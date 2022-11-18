@@ -1,0 +1,13 @@
+body {
+  width: 10rem;
+  
+}
+#items {
+  border-radius: 1px;
+  box-shadow: 1px 1px 1px 1px #000;
+  overflow: auto;
+}
+
+#bottombar {
+  height: 20;
+}
