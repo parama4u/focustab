@@ -47,6 +47,8 @@ padding: 2px 2px 2px 2px ;
 flex: none;
 order: 0;
 flex-grow: 0;
+overflow: scroll;
+overflow-x: hidden;
 }
 
 #footer {

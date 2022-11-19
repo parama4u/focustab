@@ -7,17 +7,30 @@
     <link rel="stylesheet" href="./popup.css" />
 </head>
 <body>
+
+  <template id="opentab">
+    <li>
+      <span class="title">Tab Title </span> 
+        | 
+        <span class="pathname">Tab Pathname</span>
+        </li>
+  </template>
+
+
  <div id="header">
   <img src="icons/icon.png" class="contain"> Stale Tab
  </div>
  
  <div id="content">
-  Content here
+    <div id="itemlist">
+      <ul></ul>
+    </div>
  </div>
 
  <div id="footer">
   footer here
  </div>
 
+ <script src="./popup.js" type="module"></script>
 </body>
 </html>

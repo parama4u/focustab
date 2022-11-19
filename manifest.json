@@ -11,5 +11,8 @@
     "action": {
       "default_icon": "icons/icon.png",
       "default_popup": "popup.html"
-    }
+    },
+    "permissions": [
+      "tabs"
+    ]
   }
