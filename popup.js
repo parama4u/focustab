@@ -10,7 +10,7 @@ const elements = new Set();
     const element = template.content.firstElementChild.cloneNode(true);
     const title = tab.title;
     // const pathname = new URL(tab.url).pathname.slice("/docs".length);
-    const pathname = tab.url
+    const pathname = tab.url;
     element.querySelector(".title").textContent = title;
     // element.querySelector(".pathname").textContent = pathname;
     elements.add(element);
@@ -20,17 +20,14 @@ const elements = new Set();
   document.querySelector("ul").append(...elements);
 
   function getConfig(tab){
-    let data = chrome.storage.local.get();
-    if(tab.title.match(data["title_pattern"]))
-      {
-        console.log("its a mattch" + tab.title);
-    }
-    else{
-      console.log("Not a match");
-    }
-  }
+                const res = chrome.storage.local.get("title_pattern",function(title_pattern){
+                          return tab.title.search(title_pattern.title_pattern);
+                        });
+                console.log (tab.title + ":" + res );
+      }  
+        
 
-  function setConfig(title_pattern = null, url_pattern = null, stale_time = 60){
+  function setConfig(title_pattern = null, url_pattern = null, stale_time = 60){ 
     let data = {
       title_pattern: "Google Search",
       url_pattern : "google.com",
