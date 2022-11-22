@@ -23,7 +23,8 @@ const elements = new Set();
     // `tab` will either be a `tabs.Tab` instance or `undefined`.
     let [tab] = await chrome.tabs.query(queryOptions);
     const element = template.content.firstElementChild.cloneNode(true);
-    element.querySelector(".title").textContent = tab.title;
+    element.querySelector(".title").textContent = "Current:" + tab.title;
+    element.querySelector(".movetab").hidden = true;
     document.querySelector(".items").append(element);
     return tab;
   }
@@ -34,13 +35,23 @@ const elements = new Set();
     for (const tab of tabs) {
       const element = template.content.firstElementChild.cloneNode(true);
       element.querySelector(".title").textContent = tab.title;
+      element.querySelector(".movetab").addEventListener("click",
+                                                                function(){
+                                                                openTab(tab.id);
+                                                                }  
+                                                        )
       elements.add(element);
     }
+    // document.querySelector(".movetab").addEventListener("onClicked",openTab(tab_id));
     document.querySelector(".items").append(...elements);
   }
 
   getCurrentTab();
   getOpenTabs();
+
+  function openTab(tab_id){
+    chrome.tabs.update(tab_id, {selected: true})
+  }
 
   function getConfig(tab){
               let res = {}
