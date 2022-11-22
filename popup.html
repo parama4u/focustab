@@ -9,11 +9,12 @@
 <body>
 
   <template id="opentab">
-    <li>
-      <span class="title">Tab Title </span>
-      <img src="icons/addfile.png"> 
-      <img src="icons/remfile.png">
-        </li>
+    <tr>
+      <td class="title"> Tab Title </td>
+      <td id="time_left"> </td>
+      <td id="settings"> <img src="icons/settings.png" class="remconfig"></td> 
+      <td id="open"> <img src="icons/opentab.png" class="remconfig"></td>
+      </tr>
   </template>
 
 
@@ -23,7 +24,8 @@
  
  <div id="content">
     <div id="itemlist">
-      <ul></ul>
+      <table class="items">
+      </table>
     </div>
  </div>
 
