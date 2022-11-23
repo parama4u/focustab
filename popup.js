@@ -4,6 +4,7 @@
 let queryOptions = { };
 const tabs = await chrome.tabs.query(queryOptions);
 const template = document.getElementById("opentab");
+const settings = document.getElementById("settings")
 const elements = new Set();
 
   // for (const tab of tabs) {
@@ -19,8 +20,8 @@ const elements = new Set();
   // document.querySelector("ul").append(...elements);
 
   async function getCurrentTab() {
+    //just for the active tab
     let queryOptions = { active: true, lastFocusedWindow: true };
-    // `tab` will either be a `tabs.Tab` instance or `undefined`.
     let [tab] = await chrome.tabs.query(queryOptions);
     const element = template.content.firstElementChild.cloneNode(true);
     element.querySelector(".title").textContent = "Current:" + tab.title;
@@ -30,6 +31,7 @@ const elements = new Set();
   }
 
   async function getOpenTabs(){
+    //for all inactive tabs
     let queryOptions = { active: false };
     const tabs = await chrome.tabs.query(queryOptions);
     for (const tab of tabs) {
@@ -40,18 +42,43 @@ const elements = new Set();
                                                                 openTab(tab.id);
                                                                 }  
                                                         )
+      element.querySelector(".navsetting").addEventListener("click",
+                                                        function(){
+                                                          toggleSettings(tab);
+                                                        }  
+                                                )
       elements.add(element);
     }
-    // document.querySelector(".movetab").addEventListener("onClicked",openTab(tab_id));
     document.querySelector(".items").append(...elements);
+  }
+  
+  function openTab(tab_id){
+    //To make the tab active 
+    chrome.tabs.update(tab_id, {selected: true})
+  }
+
+  function toggleSettings(tab,show=true){
+    if(show){
+      document.querySelector("#itemlist").classList.add("hide")
+      const element = settings.content.cloneNode(true);
+      element.querySelector(".save").addEventListener("click",
+                                                                function(){
+                                                                toggleSettings(tab,false);
+                                                                }  
+                                                        )
+      document.querySelector(".setitems").append(element);
+      document.querySelector("#pgesettings").classList.remove("hide")
+    }
+    else{
+      document.querySelector("#itemlist").classList.remove("hide")
+      document.querySelector("#pgesettings").classList.add("hide")
+
+    }
+    
   }
 
   getCurrentTab();
   getOpenTabs();
-
-  function openTab(tab_id){
-    chrome.tabs.update(tab_id, {selected: true})
-  }
 
   function getConfig(tab){
               let res = {}

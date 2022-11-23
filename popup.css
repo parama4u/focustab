@@ -32,7 +32,12 @@ img {
 .contain {
   object-fit: contain;
 }
-    
+
+.hide{
+  visibility: hidden;
+  position:absolute;
+  transition: all 0.2s ease-out;
+}
 
 #content {
   width: 300px;

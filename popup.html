@@ -12,9 +12,16 @@
     <tr>
       <td class="title"> Tab Title </td>
       <td class="time_left"> </td>
-      <td class="settings"> <img src="icons/settings.png" class="remconfig"></td> 
+      <td class="settings"> <img src="icons/settings.png" class="navsetting"></td> 
       <td class="navtab"> <img src="icons/opentab.png" class="movetab"></td>
       </tr>
+  </template>
+
+  <template id="settings">
+    <td class="title"> Tab Title </td>
+    <td class="url"> url </td>
+    <td class="stale"> 10 </td>
+    <td colspan="3"><img src="icons/save.png" class="save"/></td>
   </template>
 
 
@@ -23,12 +30,17 @@
  </div>
  
  <div id="content">
-    <div id="itemlist">
+    <div id="itemlist" >
       <table class="items">
-    
+        
+      </table>
+    </div>
+    <div id="pgesettings" class="hide">
+      <table class="setitems">
       </table>
     </div>
  </div>
+ 
 
  <div id="footer">
   footer here
